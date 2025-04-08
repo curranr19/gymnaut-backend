@@ -28,4 +28,20 @@ async def register_user(user: User):
 
     
     result = await db.users.insert_one(user_dict)
+    user_id = str(result.inserted_id)
+
+    empty_profile = {
+        "profile_id": str(user_id),
+        "first_name": "",
+        "last_name": "",
+        "dob": None,
+        "address": "",
+        "city": "",
+        "mobile": "",
+        "current_weight": 0.0,
+        "target_weight": 0.0,
+        "fitness_ability": ""
+    }
     return {"message": "User registered successfully", "id": str(result.inserted_id)}
+
+
